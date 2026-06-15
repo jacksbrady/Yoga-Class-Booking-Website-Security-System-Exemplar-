@@ -1,0 +1,59 @@
+{{> head}}
+{{> header}}
+
+<main class="wrap">
+
+    <h1>{{title}}</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#users}}
+            <tr>
+                <td>{{name}}</td>
+                <td>{{email}}</td>
+                <td>
+                    <form method="POST" action="/organiser/users/{{id}}/role">
+                        <select name="role" onchange="this.form.submit()">
+                            <option value="student" {{#isStudent}} selected{{/isStudent}}>Student</option>
+                            <option value="instructor" {{#isInstructor}} selected{{/isInstructor}}>Instructor</option>
+                            <option value="organiser" {{#isOrganiser}} selected{{/isOrganiser}}>Organiser</option>
+                        </select>
+                    </form>
+                </td>
+                <td>
+                    {{^isCurrentUser}}
+                    <button type="button"
+                            class="btn"
+                            onclick="openDeleteUserModal('{{id}}', '{{name}}')">
+                        Delete User
+                    </button>
+                    {{/isCurrentUser}}
+                </td>
+            </tr>
+            {{/users}}
+        </tbody>
+    </table>
+
+    <div id="deleteUserModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Delete User</h2>
+            <p id="deleteUserMessage">Are you sure you want to delete this user?</p>
+
+            <form id="deleteUserForm" method="POST" action="">
+                <button type="submit" class="btn primary">Yes, Delete User</button>
+                <button type="button" class="btn" onclick="closeDeleteUserModal()">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/static/js/delete-user-modal.js"></script>
+
+    {{> footer}}

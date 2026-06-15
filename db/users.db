@@ -1,0 +1,17 @@
+{"name":"Leo","email":"leo@yoga.local","role":"instructor","_id":"218NhfZlyB0q187r"}
+{"name":"Sophie","email":"sophie@yoga.local","role":"instructor","_id":"7iYOycDBYRvzzkHM"}
+{"name":"Ella","email":"ella@yoga.local","role":"instructor","_id":"EORevL48kLqs4W2e"}
+{"name":"Ben","email":"ben@yoga.local","role":"instructor","_id":"UlzppRRWyCjca8EQ"}
+{"name":"Mia","email":"mia@yoga.local","role":"instructor","_id":"YC70dQoxFApyBFmw"}
+{"name":"Fiona","email":"fiona@student.local","role":"student","_id":"theeqaPT1tr0xry8"}
+{"name":"Ava","email":"ava@yoga.local","role":"instructor","_id":"ztITdRktqPgtGd4t"}
+{"$$indexCreated":{"fieldName":"email","unique":true,"sparse":false}}
+{"name":"Jack Brady","email":"organiser@outlook.com","role":"organiser","password":"$2b$10$FipqtdZAQQZMkx9P8aESueqmY3ZNkXPeq/p9laIBcGcpQ65tE92vu","_id":"e0Z0upDOexmfs1yw"}
+{"name":"John Brown","email":"johnsmither@outlook.com","role":"student","password":"$2b$10$G1m3edDpqZUNVD78w8YSSOrA1nTRj4aUG8ugcNg3zxVruCf88lwm6","_id":"kuXJjI8MyIrDGM9w"}
+{"$$deleted":true,"_id":"kuXJjI8MyIrDGM9w"}
+{"name":"John","email":"johnsmither@outlook.com","role":"student","password":"$2b$10$wJEIz4i8YtoUnRyXCrFX5O2WUbYnfweTay4b0cITGrjqFxqpKkkEG","_id":"GroRStmpv5dDt1Yv"}
+{"name":"jack","email":"demo@outlook.com","role":"student","password":"$2b$10$k/kPNkY6GvJ4vIKjvyjaQ.3xEd.W2JRBmTA9vgAu/mBqSRaUyJO5O","_id":"9tEpYevtgXkC9Uzg"}
+{"$$deleted":true,"_id":"GroRStmpv5dDt1Yv"}
+{"$$deleted":true,"_id":"9tEpYevtgXkC9Uzg"}
+{"name":"John","email":"fred@outlook","role":"student","password":"$2b$10$1OtKZy7aHRJwEi12RRZFeO4xb6T7izIkMmt3kcNp3JXMXWh/ZWFm.","_id":"vh2ZxPHTN1zSK6vw"}
+{"$$deleted":true,"_id":"YC70dQoxFApyBFmw"}

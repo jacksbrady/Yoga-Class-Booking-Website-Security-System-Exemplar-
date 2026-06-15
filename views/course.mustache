@@ -1,0 +1,82 @@
+{{> head}}
+{{> header}}
+
+<main class="wrap">
+
+    <article>
+        <h1>{{course.title}}</h1>
+        <p>
+            Level: {{course.level}} • Type: {{course.type}} {{#course.allowDropIn}}• Drop-in available{{/course.allowDropIn}}
+        </p>
+        <p>{{course.description}}</p>
+        <p>Dates: {{course.startDate}} – {{course.endDate}}</p>
+        <p>Location: {{course.location}}</p>
+        <p">Single session: £{{course.sessionPrice}}</p>
+        <p>Full course: £{{course.coursePrice}}</p>
+
+        <section>
+            <h2>Book the full course</h2>
+            <form action="/courses/{{course.id}}/book" method="post">
+                <!-- If you add CSRF later: <input type="hidden" name="_csrf" value="{{csrfToken}}"> -->
+                <input type="hidden" name="userId" value="{{user._id}}">
+                <button class="btn primary" type="submit">Book full course</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Sessions</h2>
+            <table class="table">
+                <thead>
+                    <tr><th>Start</th><th>End</th><th>Capacity</th><th>Booked</th><th>Remaining</th><th></th></tr>
+                </thead>
+                <tbody>
+                    {{#sessions}}
+                    <tr>
+                        <td>{{start}}</td>
+                        <td>{{end}}</td>
+                        <td>{{capacity}}</td>
+                        <td>{{booked}}</td>
+                        <td>{{remaining}}</td>
+                        <td>
+                            {{#allowDropIn}}
+                            <form method="post" action="/sessions/{{id}}/book">
+                                <button class="btn" type="submit" {{#isFull}} disabled{{/isFull}}>Book this session</button>
+                            </form>
+                            {{/allowDropIn}}
+                            {{^allowDropIn}}
+                            <span>Drop-ins disabled</span>
+                            {{/allowDropIn}}
+
+                            {{#isOrganiser}}
+                            <button class="btn primary"
+                                    type="button"
+                                    onclick="openParticipantsModal('{{id}}')">
+                                View Participants
+                            </button>
+                            {{/isOrganiser}}
+                        </td>
+                    </tr>
+                    {{/sessions}}
+                </tbody>
+            </table>
+        </section>
+    </article>
+
+    <div id="participantsModal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Participants</h2>
+            <div id="participantsList">
+                <p class="muted">Loading...</p>
+            </div>
+            <button class="btn" onclick="closeParticipantsModal()">Close</button>
+        </div>
+    </div>
+
+    <script src="/static/js/participants-modal.js"></script>
+
+
+
+
+
+
+    {{> footer}}

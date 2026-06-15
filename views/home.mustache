@@ -1,0 +1,41 @@
+{{> head}}
+{{> header}}
+
+<main class="wrap">
+    <div class="home-split">
+        <section class="home-about">
+            <h1>About Us</h1>
+            <p>
+                Welcome to Yoga Studio. We offer friendly, supportive yoga classes
+                for all experience levels, from complete beginners to more
+                experienced students looking to deepen their practice.
+            </p>
+            <p>
+                Our sessions focus on movement, breathing, balance, and wellbeing
+                in a calm and welcoming environment. Whether you want to join a
+                full course or drop into a single class, we aim to make yoga
+                accessible and enjoyable for everyone.
+            </p>
+            <p>
+                Based in Glasgow, we provide weekly block courses and weekend
+                workshops designed to help students build confidence, strength,
+                flexibility, and mindfulness.
+            </p>
+        </section>
+
+        <section class="home-courses">
+            <h1>Upcoming Courses</h1>
+
+            <div class="cards">
+                {{#courses}}
+                {{> course_card}}
+                {{/courses}}
+
+                {{^courses}}
+                <p>No courses available yet.</p>
+                {{/courses}}
+            </div>
+        </section>
+    </div>
+
+    {{> footer}}

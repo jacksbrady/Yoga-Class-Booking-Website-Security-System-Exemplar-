@@ -1,0 +1,45 @@
+{{> head}}
+{{> header}}
+<main class="wrap">
+
+    <h1>{{title}}</h1>
+    <p>Adding a class for <strong>{{course.title}}</strong></p>
+
+    {{#error}}
+    <p class="muted">{{error}}</p>
+    {{/error}}
+
+    <form method="POST" action="/organiser/courses/{{course.id}}/sessions/new">
+        <div class="form-group">
+            <label for="startDateTime">Start Date and Time</label>
+            <input type="datetime-local"
+                   id="startDateTime"
+                   name="startDateTime"
+                   required />
+        </div>
+
+        <div class="form-group">
+            <label for="endDateTime">End Date and Time</label>
+            <input type="datetime-local"
+                   id="endDateTime"
+                   name="endDateTime"
+                   required />
+        </div>
+
+        <div class="form-group">
+            <label for="capacity">Capacity</label>
+            <input type="number"
+                   id="capacity"
+                   name="capacity"
+                   min="1"
+                   required />
+        </div>
+
+        <button type="submit" class="btn primary">Create Class</button>
+    </form>
+
+    <p class="muted" style="margin-top: 1rem;">
+        <a href="/organiser/courses/{{course.id}}/edit">Back to course editor</a>
+    </p>
+
+    {{> footer}}

@@ -1,0 +1,36 @@
+<article class="card">
+    <!-- Fixed broken title link-->
+    <h2><a href="/courses/{{id}}">{{title}}</a></h2>
+
+    <p>
+        Level: {{level}} &bull; Type: {{type}}
+        {{#allowDropIn}}&bull; Drop-in OK{{/allowDropIn}}
+    </p>
+
+    <p>{{description}}</p>
+
+    <!-- add price and location details -->
+    <p>Single session: &pound;{{sessionPrice}}</p>
+    <p>Full course: &pound;{{coursePrice}}</p>
+    <p">Location: {{location}}</p>
+
+
+    <p>
+        Dates: {{startDate}} &ndash; {{endDate}}
+    </p>
+
+    <p>
+        Next session: {{nextSession}} &bull; Sessions: {{sessionsCount}}
+    </p>
+
+    <div>
+        <a class="btn" href="/courses/{{id}}">View &amp; Book</a>
+
+        <!-- add buton to edit course-->
+        {{#isOrganiser}}
+        <a class="btn primary" href="/organiser/courses/{{id}}/edit">
+            Edit Course
+        </a>
+        {{/isOrganiser}}
+    </div>
+</article>

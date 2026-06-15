@@ -1,0 +1,26 @@
+<header class="site-header">
+    <div class="site-title">🧘 Yoga Studio</div>
+
+    <nav class="site-nav">
+        <div class="nav-left">
+            <a href="/">Home</a>
+            <a href="/courses">Courses</a>
+
+            {{#isOrganiser}}
+            <a href="/organiser/users">Manage Users</a>
+            {{/isOrganiser}}
+        </div>
+
+        <div class="nav-right">
+            {{#user}}
+            <span class="muted">Signed in as {{name}}</span>
+            <a href="/logout" class="btn">Logout</a>
+            {{/user}}
+
+            {{^user}}
+            <a href="/login" class="btn">Login</a>
+            <a href="/register" class="btn primary">Register</a>
+            {{/user}}
+        </div>
+    </nav>
+</header>

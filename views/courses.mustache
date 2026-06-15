@@ -1,0 +1,70 @@
+<!-- add head/header -->
+{{> head}}
+{{> header}}
+
+<main class="wrap">
+
+    <!-- headging added-->
+    <h1>Courses</h1>
+
+    <!-- Section and form opened-->
+    <section class="filters">
+        <form class="filter-form" method="get" action="/courses">
+            <label>
+                Difficulty
+                <select name="level">
+
+                    Difficulty
+                    <!-- Extended options to supply all options-->
+                    <option value="" {{^filters.level}} selected{{/filters.level}}>Any</option>
+                    <option value="beginner" {{#filters}} {{#level}} {{#isBeginner}} selected{{/isBeginner}} {{/level}} {{/filters}}>Beginner</option>
+                    <option value="intermediate" {{#filters}} {{#level}} {{#isIntermediate}} selected{{/isIntermediate}} {{/level}} {{/filters}}>Intermediate</option>
+                    <option value="advanced" {{#filters}} {{#level}} {{#isAdvanced}} selected{{/isAdvanced}} {{/level}} {{/filters}}>Advanced</option>
+
+                </select>
+            </label>
+
+            <label>
+                Search
+                <input type="search" name="q" value="{{filters.q}}" placeholder="Title or description" />
+            </label>
+
+            <button class="btn" type="submit">Apply</button>
+            <!-- Fixed Reset button-->
+            <a class="btn" href="/courses">Reset</a>
+        </form>
+    </section>
+
+    <div class="cards">
+        {{#courses}}
+        {{> course_card}}
+        {{/courses}}
+
+        {{^courses}}
+        <p>No courses match your filters.</p>
+        {{/courses}}
+    </div>
+
+    {{#isOrganiser}}
+    <p>
+        <a class="btn primary" href="/organiser/courses/new">Add New Course</a>
+    </p>
+    {{/isOrganiser}}
+
+    <!-- Make use of and fix previously commented out pagination-->
+    {{#pagination}}
+    <nav class="pagination">
+        {{#hasPrev}}
+        <a class="btn" href="{{prevLink}}">← Previous</a>
+        {{/hasPrev}}
+
+        <span class="muted">Page {{page}} of {{totalPages}}</span>
+
+        {{#hasNext}}
+        <a class="btn" href="{{nextLink}}">Next →</a>
+        {{/hasNext}}
+    </nav>
+    {{/pagination}}
+
+    <!-- add footer -->
+    {{> footer}}

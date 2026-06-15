@@ -1,0 +1,26 @@
+
+{{> head}}
+{{> header}}
+
+<main class="wrap">
+
+    <h1>Booking Confirmation</h1>
+    <p>Your booking has been created.</p>
+
+    <dl class="kv">
+        <dt>ID</dt>
+        <dd>{{booking.id}}</dd>
+        <dt>Type</dt>
+        <dd>{{booking.type}}</dd>
+        <dt>Status</dt>
+        <dd>{{booking.status}}</dd>
+        <dt>Created</dt>
+        <dd>{{booking.createdAt}}</dd>
+    </dl>
+
+    <!-- fix href-->
+    <p><a class="btn" href="/courses">Back to courses</a></p>
+
+
+    <!-- add footer-->
+    {{> footer}}

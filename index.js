@@ -1,0 +1,77 @@
+// index.js
+import express from "express";
+import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
+import mustacheExpress from "mustache-express";
+import path from "path";
+import { fileURLToPath } from "url";
+
+// import authRoutes from './routes/auth.js';
+import courseRoutes from "./routes/courses.js";
+import sessionRoutes from "./routes/sessions.js";
+import bookingRoutes from "./routes/bookings.js";
+import viewRoutes from "./routes/views.js";
+import { initDb } from "./models/_db.js";
+
+import { checkUser } from "./middlewares/auth.js";
+
+dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+export const app = express();
+
+// View engine (Mustache)
+app.engine(
+  "mustache",
+  mustacheExpress(path.join(__dirname, "views", "partials"), ".mustache")
+);
+app.set("view engine", "mustache");
+app.set("views", path.join(__dirname, "views"));
+
+// Body parsing
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(cookieParser());
+
+//demoUser has been replaced with new authentication system
+app.use(checkUser);
+
+// Static
+app.use("/static", express.static(path.join(__dirname, "public")));
+
+// Demo user
+// app.use(attachDemoUser);
+
+// Health
+app.get("/health", (req, res) => res.json({ ok: true }));
+
+// JSON API routes
+// app.use('/auth', authRoutes);
+// /api has been added to routes so the json can be routed to a different location than the SSR
+app.use("/api/courses", courseRoutes);
+app.use("/api/sessions", sessionRoutes);
+app.use("/api/bookings", bookingRoutes);
+
+// SSR view routes
+app.use("/", viewRoutes);
+
+// Errors
+export const not_found = (req, res) =>
+  res.status(404).type("text/plain").send("404 Not found.");
+export const server_error = (err, req, res, next) => {
+  console.error(err);
+  res.status(500).type("text/plain").send("Internal Server Error.");
+};
+app.use(not_found);
+app.use(server_error);
+
+// Only start the server outside tests
+if (process.env.NODE_ENV !== "test") {
+  await initDb();
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () =>
+    console.log(`Yoga booking running on http://localhost:${PORT}`)
+  );
+}
